@@ -3,12 +3,14 @@
 ## Dataset
 The dataset for each result condition can be downloaded by running the file in dataset or here.
 
-A script for downloading the testset is as follows:
+A example script for downloading the testset is as follows:
 
 ```
 # Download the dataset
 cd dataset
-bash download_.sh
+bash download_StarGAN.sh
+bash download_StyleGAN.sh
+bash download_StyleGAN2.sh
 cd ..
 ```
 
