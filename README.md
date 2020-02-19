@@ -17,5 +17,5 @@ bash download_StyleGAN2.sh
 cd ..
 ```
 
-## Download model weights
+## Download pre-trained model weights
 The pretrained weights can be downloaded by running the file in dataset or here.
