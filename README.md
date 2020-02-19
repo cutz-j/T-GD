@@ -17,5 +17,7 @@ bash download_StyleGAN2.sh
 cd ..
 ```
 
+For the PGGAN dataset, we have contact with the original author about opening the dataset, and waiting for a reply. After respond we will upload the PGGAN datset in future.
+
 ## Download pre-trained model weights
 The pretrained weights can be downloaded by running the file in dataset or here.
