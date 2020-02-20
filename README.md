@@ -24,7 +24,5 @@ The pretrained weights can be downloaded by running the file in dataset or [here
 
 ```
 # Download the pre-trained weights
-cd pre-trained_weights
 bash download_weights.sh
-cd ..
 ```
