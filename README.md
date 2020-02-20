@@ -20,4 +20,11 @@ cd ..
 For the PGGAN dataset, we have contact with the original author about opening the dataset, and waiting for a reply. After respond we will upload the PGGAN datset in future.
 
 ## Download pre-trained model weights
-The pretrained weights can be downloaded by running the file in dataset or here.
+The pretrained weights can be downloaded by running the file in dataset or [here](https://skku0-my.sharepoint.com/:u:/g/personal/byo7000_skku_edu/ESF_WuwUau5Mrl3hdteSChcBX3mBt8SP1Ajq-CmkEN7MlQ?e=SeLff1).
+
+```
+# Download the pre-trained weights
+cd pre-trained_weights
+bash download_weights.sh
+cd ..
+```
