@@ -10,7 +10,7 @@ A example script for downloading the testset is as follows:
 
 ```
 # Download the dataset
-cd T-GD/dataset
+cd dataset
 bash download_StarGAN.sh
 bash download_StyleGAN.sh
 bash download_StyleGAN2.sh
@@ -24,7 +24,7 @@ The pretrained weights can be downloaded by running the file in dataset or [here
 
 ```
 # Download the pre-trained weights
-cd T-GD/weights
+cd weights
 bash download_weights.sh
 cd ..
 ```
