@@ -6,5 +6,4 @@ from .utils import (
     efficientnet,
     get_model_params,
 )
-
 from .model import resnext50_32x4d
