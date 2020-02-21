@@ -1,5 +1,4 @@
 __version__ = "0.5.1"
-from .model import EfficientNet
 from .utils import (
     GlobalParams,
     BlockArgs,
@@ -8,4 +7,4 @@ from .utils import (
     get_model_params,
 )
 
-from .resnext import resnext50_32x4d
+from .model import resnext50_32x4d
