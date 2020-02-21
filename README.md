@@ -29,6 +29,11 @@ bash download_weights.sh
 cd ..
 ```
 
+## Setup
+```
+pip install -r requirements.txt
+```
+
 ## Quick-start (Evaluation)
 ```
 # Dataset and model weights need to be downloaded.
