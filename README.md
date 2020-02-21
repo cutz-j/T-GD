@@ -31,7 +31,8 @@ bash download_weights.sh
 ```
 # Dataset and model weights need to be downloaded.
 # source and target dataset dir. i.e., StarGAN --> StyleGAN2
-# pretrained weight. i.e., 
+# pretrained weight. i.e., efficientnet/stargan.pth.tar
+# t-gd pretrained weight. i.e., t-gd/efficientnet/star_to_style2.pth.tar
 python quick_start.py --source_dataset dataset/StarGAN_128 \
                       --target_dataset dataset/StyleGAN2_258 \
                       --pretrained_dir weights/efficientnet/stargan.pth.tar \
