@@ -6,3 +6,6 @@ wget -O StyleGAN2_256.tar.002 --no-check-certificate https://skku0-my.sharepoint
 
 tar -C ./StyleGAN2_256
 cat StyleGAN2_256.tar* | tar xvf -
+
+rm StyleGAN2_256.tar.001
+rm StyleGAN2_256.tar.002

@@ -24,7 +24,14 @@ The pretrained weights can be downloaded by running the file in dataset or [here
 
 ```
 # Download the pre-trained weights
+cd weights
 bash download_weights.sh
+cd ..
+```
+
+## Setup
+```
+pip install -r requirements.txt
 ```
 
 ## Quick-start (Evaluation)
@@ -34,7 +41,7 @@ bash download_weights.sh
 # pretrained weight. i.e., efficientnet/stargan.pth.tar
 # t-gd pretrained weight. i.e., t-gd/efficientnet/star_to_style2.pth.tar
 python quick_start.py --source_dataset dataset/StarGAN_128 \
-                      --target_dataset dataset/StyleGAN2_258 \
-                      --pretrained_dir weights/efficientnet/stargan.pth.tar \
+                      --target_dataset dataset/StyleGAN2_256 \
+                      --pretrained_dir weights/pre-train/efficientnet/stargan.pth.tar \
                       --resume weights/t-gd/efficientnet/star_to_style2.pth.tar
 ```
