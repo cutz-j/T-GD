@@ -4,3 +4,5 @@ wget -O StarGAN_128.tar --no-check-certificate https://skku0-my.sharepoint.com/:
 
 tar -C ./StarGAN_128
 tar -xvf StarGAN_128.tar
+
+rm StarGAN_128.tar
