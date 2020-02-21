@@ -10,11 +10,9 @@ A example script for downloading the testset is as follows:
 
 ```
 # Download the dataset
-cd dataset
 bash download_StarGAN.sh
 bash download_StyleGAN.sh
 bash download_StyleGAN2.sh
-cd ..
 ```
 
 For the PGGAN dataset, we have contact with the original author about opening the dataset, and waiting for a reply. After respond we will upload the PGGAN datset in future.
