@@ -23,7 +23,7 @@ ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 
 opt = TestOptions().parse(print_options=False)
-print("{} from {} model testing on {}".format(opt.arch, opt.source_dataset, opt.target_datset))
+print("{} from {} model testing on {}".format(opt.arch, opt.source_dataset, opt.target_dataset))
 
 gpu_id = opt.gpd_id
 os.environ['CUDA_VISIBLE_DEVICES'] = str(gpu_id)
