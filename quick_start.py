@@ -39,18 +39,16 @@ if opt.resume:
     
 model.to('cuda')
 cudnn.benchmark = True
-print('    Total params: %.2fM' % (sum(p.numel() for p in model.parameters())/1000000.0))
+print('Total params: %.2fM' % (sum(p.numel() for p in model.parameters())/1000000.0))
 
 criterion = nn.CrossEntropyLoss().cuda()
 optimizer = optim.SGD(model.parameters(), lr=opt.lr, momentum=opt.momentum)
 
 def test(val_loader, model, criterion, epoch, use_cuda):
-    global best_acc
 
     batch_time = AverageMeter()
     data_time = AverageMeter()
     losses = AverageMeter()
-    top1 = AverageMeter()
     arc = AverageMeter()
     # switch to evaluate mode
     model.eval()
@@ -71,7 +69,6 @@ def test(val_loader, model, criterion, epoch, use_cuda):
             # measure accuracy and record loss
             prec1 = accuracy(outputs.data, targets.data)
             losses.update(loss.data.tolist(), inputs.size(0))
-            top1.update(prec1[0], inputs.size(0))
             auroc = roc_auc_score(targets.cpu().detach().numpy(), outputs.cpu().detach().numpy()[:,1])
             arc.update(auroc, inputs.size(0))
 
@@ -79,9 +76,9 @@ def test(val_loader, model, criterion, epoch, use_cuda):
             batch_time.update(time.time() - end)
             end = time.time()
 
-    print('{batch}/{size} | Loss:{loss:} | top1:{tp1:} | AUROC:{ac:}'.format(
-         batch=batch_idx+1, size=len(val_loader), loss=losses.avg, tp1=top1.avg, ac=arc.avg))
-    return (losses.avg, top1.avg, arc.avg)
+    print('{batch}/{size} | Loss:{loss:} | AUROC:{ac:}'.format(
+         batch=batch_idx+1, size=len(val_loader), loss=losses.avg, ac=arc.avg))
+    return (losses.avg, arc.avg)
 
 test_aug = transforms.Compose([
     transforms.Resize(opt.size),
@@ -96,7 +93,7 @@ test_loader = DataLoader(datasets.ImageFolder(test_dir, test_aug),
                        batch_size=opt.test_batch, shuffle=True, num_workers=opt.num_workers, pin_memory=True)
 
 print("Performance of {}".format(data_dir))
-test_loss, test_acc, test_auroc = test(test_loader, model, criterion, 1, use_cuda)
+test_loss, test_auroc = test(test_loader, model, criterion, 1, use_cuda)
 
 data_dir = opt.target_dataset
 test_dir = os.path.join(data_dir, 'test')
@@ -104,4 +101,4 @@ test_loader = DataLoader(datasets.ImageFolder(test_dir, test_aug),
                        batch_size=opt.test_batch, shuffle=True, num_workers=opt.num_workers, pin_memory=True)
 
 print("Performance of {}".format(data_dir))
-test_loss, test_acc, test_auroc = test(test_loader, model, criterion, 1, use_cuda)
+test_loss, test_auroc = test(test_loader, model, criterion, 1, use_cuda)
