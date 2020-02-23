@@ -3,6 +3,11 @@
 ## Overview of our framework.
 <img src='./image/overview.png' width=1200>
 
+## Clone
+```
+git clone https://anonymous-hub/T-GD
+```
+
 ## Dataset
 The dataset for each result condition can be downloaded by running the file in dataset or [here](https://skku0-my.sharepoint.com/:f:/g/personal/byo7000_skku_edu/EoP8mWpbyDhNtIaZ9rBoPWcB5QRsinPBKwr0V18dHsUR8w?e=7oNCXY).
 
