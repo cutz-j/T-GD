@@ -5,7 +5,6 @@ class TestOptions(BaseOptions):
         parser = BaseOptions.initialize(self, parser)
         parser.add_argument('--source_dataset', type=str)
         parser.add_argument('--target_dataset', type=str)
-        parser.add_argument('--pretrained_dir', type=str)
         parser.add_argument('--resume', type=str)
 
         self.isTrain = False

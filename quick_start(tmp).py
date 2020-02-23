@@ -1,7 +1,5 @@
 import os
 os.chdir("D:/github/T-GD/")
-
-
 import sys
 import torch
 import torch.nn
