@@ -22,7 +22,7 @@ ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 
 
-opt = TestOptions().parse(print_options=False)
+opt = TestOptions()
 print("{} from {} model testing on {}".format(opt.arch, opt.source_dataset, opt.target_datset))
 
 gpu_id = opt.gpd_id
