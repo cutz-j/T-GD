@@ -12,6 +12,11 @@ from torch import nn
 from torch.nn import functional as F
 from torch.utils import model_zoo
 
+try:
+    from torch.hub import load_state_dict_from_url
+except ImportError:
+    from torch.utils.model_zoo import load_url as load_state_dict_from_url
+
 ########################################################################
 ############### HELPERS FUNCTIONS FOR MODEL ARCHITECTURE ###############
 ########################################################################
@@ -19,7 +24,7 @@ from torch.utils import model_zoo
 
 # Parameters for the entire model (stem, all blocks, and head)
 GlobalParams = collections.namedtuple('GlobalParams', [
-    'batch_norm_momentum', 'batch_norm_epsilon', 'dropout_rate',
+    'dropout_rate',
     'num_classes', 'width_coefficient', 'depth_coefficient',
     'depth_divisor', 'min_depth', 'drop_connect_rate', 'image_size'])
 
@@ -276,8 +281,6 @@ def efficientnet(width_coefficient=None, depth_coefficient=None, dropout_rate=0.
     blocks_args = BlockDecoder.decode(blocks_args)
 
     global_params = GlobalParams(
-        batch_norm_momentum=0.99,
-        batch_norm_epsilon=1e-3,
         dropout_rate=dropout_rate,
         drop_connect_rate=drop_connect_rate,
         # data_format='channels_last',  # removed, this is always true in PyTorch
@@ -331,5 +334,5 @@ def load_pretrained_weights(model, model_name, load_fc=True):
         assert set(res.missing_keys) == set(['_fc.weight', '_fc.bias']), 'issue loading pretrained weights'
     print('Loaded pretrained weights for {}'.format(model_name))
 
-def BatchNorm2d(num_features):
-    return nn.GroupNorm(num_channels=num_features, num_groups=num_features//4)
+def GroupNorm2d(num_features):
+    return nn.GroupNorm(num_groups=8, num_channels=num_features)

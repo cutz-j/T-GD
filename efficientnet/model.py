@@ -22,25 +22,8 @@ from .utils import (
     load_pretrained_weights,
     Swish,
     MemoryEfficientSwish,
-    BatchNorm2d,
+    GroupNorm2d,
 )
-
-class Conv2d_WS(nn.Conv2d):
-
-    def __init__(self, in_channels, out_channels, kernel_size, stride=1,
-                 padding=0, dilation=1, groups=1, bias=True):
-        super(Conv2d_WS, self).__init__(in_channels, out_channels, kernel_size, stride,
-                 padding, dilation, groups, bias)
-
-    def forward(self, x):
-        weight = self.weight
-        weight_mean = weight.mean(dim=1, keepdim=True).mean(dim=2,
-                                  keepdim=True).mean(dim=3, keepdim=True)
-        weight = weight - weight_mean
-        std = weight.view(weight.size(0), -1).std(dim=1).view(-1, 1, 1, 1) + 1e-5
-        weight = weight / std.expand_as(weight)
-        return F.conv2d(x, weight, self.bias, self.stride,
-                        self.padding, self.dilation, self.groups)
 
 class MBConvBlock(nn.Module):
     """
@@ -57,8 +40,6 @@ class MBConvBlock(nn.Module):
     def __init__(self, block_args, global_params):
         super().__init__()
         self._block_args = block_args
-        self._bn_mom = 1 - global_params.batch_norm_momentum
-        self._bn_eps = global_params.batch_norm_epsilon
         self.has_se = (self._block_args.se_ratio is not None) and (0 < self._block_args.se_ratio <= 1)
         self.id_skip = block_args.id_skip  # skip connection and drop connect
 
@@ -70,7 +51,7 @@ class MBConvBlock(nn.Module):
         oup = self._block_args.input_filters * self._block_args.expand_ratio  # number of output channels
         if self._block_args.expand_ratio != 1:
             self._expand_conv = Conv2d(in_channels=inp, out_channels=oup, kernel_size=1, bias=False)
-            self._bn0 = BatchNorm2d(num_features=oup)
+            self._gn0 = GroupNorm2d(num_features=oup)
 
         # Depthwise convolution phase
         k = self._block_args.kernel_size
@@ -78,7 +59,7 @@ class MBConvBlock(nn.Module):
         self._depthwise_conv = Conv2d(
             in_channels=oup, out_channels=oup, groups=oup,  # groups makes it depthwise
             kernel_size=k, stride=s, bias=False)
-        self._bn1 = BatchNorm2d(num_features=oup)
+        self._gn1 = GroupNorm2d(num_features=oup)
 
         # Squeeze and Excitation layer, if desired
         if self.has_se:
@@ -89,7 +70,7 @@ class MBConvBlock(nn.Module):
         # Output phase
         final_oup = self._block_args.output_filters
         self._project_conv = Conv2d(in_channels=oup, out_channels=final_oup, kernel_size=1, bias=False)
-        self._bn2 = BatchNorm2d(num_features=final_oup)
+        self._gn2 = GroupNorm2d(num_features=final_oup)
         self._swish = MemoryEfficientSwish()
 
     def forward(self, inputs, drop_connect_rate=None):
@@ -102,8 +83,8 @@ class MBConvBlock(nn.Module):
         # Expansion and Depthwise Convolution
         x = inputs
         if self._block_args.expand_ratio != 1:
-            x = self._swish(self._bn0(self._expand_conv(inputs)))
-        x = self._swish(self._bn1(self._depthwise_conv(x)))
+            x = self._swish(self._gn0(self._expand_conv(inputs)))
+        x = self._swish(self._gn1(self._depthwise_conv(x)))
 
         # Squeeze and Excitation
         if self.has_se:
@@ -111,7 +92,7 @@ class MBConvBlock(nn.Module):
             x_squeezed = self._se_expand(self._swish(self._se_reduce(x_squeezed)))
             x = torch.sigmoid(x_squeezed) * x
 
-        x = self._bn2(self._project_conv(x))
+        x = self._gn2(self._project_conv(x))
 
         # Skip connection and drop connect
         input_filters, output_filters = self._block_args.input_filters, self._block_args.output_filters
@@ -145,19 +126,16 @@ class EfficientNet(nn.Module):
         assert len(blocks_args) > 0, 'block args must be greater than 0'
         self._global_params = global_params
         self._blocks_args = blocks_args
+        self.feature_list = []
 
         # Get static or dynamic convolution depending on image size
         Conv2d = get_same_padding_conv2d(image_size=global_params.image_size)
-
-        # Batch norm parameters
-        bn_mom = 1 - self._global_params.batch_norm_momentum
-        bn_eps = self._global_params.batch_norm_epsilon
 
         # Stem
         in_channels = 3  # rgb
         out_channels = round_filters(32, self._global_params)  # number of output channels
         self._conv_stem = Conv2d(in_channels, out_channels, kernel_size=3, stride=2, bias=False)
-        self._bn0 = BatchNorm2d(num_features=out_channels)
+        self._gn0 = GroupNorm2d(num_features=out_channels)
 
         # Build blocks
         self._blocks = nn.ModuleList([])
@@ -181,7 +159,7 @@ class EfficientNet(nn.Module):
         in_channels = block_args.output_filters  # output of final block
         out_channels = round_filters(1280, self._global_params)
         self._conv_head = Conv2d(in_channels, out_channels, kernel_size=1, bias=False)
-        self._bn1 = BatchNorm2d(num_features=out_channels)
+        self._gn1 = GroupNorm2d(num_features=out_channels)
 
         # Final linear layer
         self._avg_pooling = nn.AdaptiveAvgPool2d(1)
@@ -200,7 +178,9 @@ class EfficientNet(nn.Module):
         """ Returns output of the final convolution layer """
 
         # Stem
-        x = self._swish(self._bn0(self._conv_stem(inputs)))
+        self.feature_list = []
+        x = self._swish(self._gn0(self._conv_stem(inputs)))
+        self.feature_list.append(x)
 
         # Blocks
         for idx, block in enumerate(self._blocks):
@@ -208,9 +188,11 @@ class EfficientNet(nn.Module):
             if drop_connect_rate:
                 drop_connect_rate *= float(idx) / len(self._blocks)
             x = block(x, drop_connect_rate=drop_connect_rate)
+            self.feature_list.append(x)
 
         # Head
-        x = self._swish(self._bn1(self._conv_head(x)))
+        x = self._swish(self._gn1(self._conv_head(x)))
+        self.feature_list.append(x)
 
         return x
 

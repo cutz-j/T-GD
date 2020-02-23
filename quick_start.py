@@ -1,7 +1,7 @@
 import os
 import sys
 import torch
-import torch.nn
+from torch import nn
 import argparse
 import numpy as np
 import torchvision.transforms as transforms
@@ -25,12 +25,12 @@ ImageFile.LOAD_TRUNCATED_IMAGES = True
 opt = TestOptions().parse(print_options=False)
 print("{} from {} model testing on {}".format(opt.arch, opt.source_dataset, opt.target_dataset))
 
-gpu_id = opt.gpd_id
+gpu_id = opt.gpu_id
 os.environ['CUDA_VISIBLE_DEVICES'] = str(gpu_id)
 use_cuda = torch.cuda.is_available()
 print("GPU device %d:" %(gpu_id), use_cuda)
 
-model = EfficientNet.from_name(opt.arch, num_classes=opt.num_classes)
+model = EfficientNet.from_name(opt.arch, num_classes=opt.classes)
 
 if opt.resume:
     pretrained = opt.resume
