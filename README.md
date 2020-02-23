@@ -5,7 +5,7 @@
 
 ## Clone
 ```
-git clone https://anonymous-hub/T-GD
+git clone https://githug.com/anonymous-hub/T-GD
 ```
 
 ## Dataset
