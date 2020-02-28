@@ -16,13 +16,14 @@ A example script for downloading the testset is as follows:
 ```
 # Download the dataset
 cd dataset
+bash download_PGGAN.sh
 bash download_StarGAN.sh
 bash download_StyleGAN.sh
 bash download_StyleGAN2.sh
 cd ..
 ```
 
-For the PGGAN dataset, we have contact with the original author about opening the dataset, and waiting for a reply. After respond we will upload the PGGAN datset in future.
+For the PGGAN dataset, we have contact with the original author about opening the dataset, and waiting for a reply. For now we only uploaded a small portion of data for the test set. After respond we will upload the PGGAN full datset in future.
 
 ## Download pre-trained model weights
 The pretrained weights can be downloaded by running the file in dataset or [here](https://skku0-my.sharepoint.com/:f:/g/personal/byo7000_skku_edu/EoP8mWpbyDhNtIaZ9rBoPWcB5QRsinPBKwr0V18dHsUR8w?e=7oNCXY).
