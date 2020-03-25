@@ -52,5 +52,4 @@ python quick_start.py --source_dataset dataset/StarGAN_128 \
                       --resume weights/t-gd/efficientnet/star_to_style2.pth.tar
 ```
 ## References
-[Joint Face Detection and Alignment Using Multitask Cascaded Convolutional Networks](https://www.eericon.github.io/post/timer-android)
-
+[ZHANG2016] Zhang, K., Zhang, Z., Li, Z., and Qiao, Y. (2016). Joint face detection and alignment using multitask cascaded convolutional networks. IEEE Signal Processing Letters, 23(10):1499–1503.(https://ieeexplore.ieee.org/abstract/document/7553523)
