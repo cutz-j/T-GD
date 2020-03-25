@@ -53,5 +53,5 @@ python quick_start.py --source_dataset dataset/StarGAN_128 \
 ```
 ## References
 ```
-[@Joint Face Detection and Alignment Using Multitask Cascaded Convolutional Networks](https://www.eericon.github.io/post/timer-android)
+[Joint Face Detection and Alignment Using Multitask Cascaded Convolutional Networks](https://www.eericon.github.io/post/timer-android)
 ```
