@@ -51,6 +51,7 @@ python quick_start.py --source_dataset dataset/StarGAN_128 \
                       --pretrained_dir weights/pre-train/efficientnet/stargan.pth.tar \
                       --resume weights/t-gd/efficientnet/star_to_style2.pth.tar
 ```
-## Sources
-This app is inspired by Rando Kim book „Time of Your Life”
-and Android app tutorial by [@eericon](https://www.eericon.github.io/post/timer-android)
+## References
+```
+[@Joint Face Detection and Alignment Using Multitask Cascaded Convolutional Networks](https://www.eericon.github.io/post/timer-android)
+```
