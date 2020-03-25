@@ -51,17 +51,6 @@ python quick_start.py --source_dataset dataset/StarGAN_128 \
                       --pretrained_dir weights/pre-train/efficientnet/stargan.pth.tar \
                       --resume weights/t-gd/efficientnet/star_to_style2.pth.tar
 ```
-
+[ZHANG2016]
 ## Reference
-```
-@article{zhang2016joint,
-  title={Joint face detection and alignment using multitask cascaded convolutional networks},
-  author={Zhang, Kaipeng and Zhang, Zhanpeng and Li, Zhifeng and Qiao, Yu},
-  journal={IEEE Signal Processing Letters},
-  volume={23},
-  number={10},
-  pages={1499--1503},
-  year={2016},
-  publisher={IEEE}
-}
-```
+.. [ZHANG2016] Zhang, K., Zhang, Z., Li, Z., and Qiao, Y. (2016). Joint face detection and alignment using multitask cascaded convolutional networks. IEEE Signal Processing Letters, 23(10):1499–1503.
