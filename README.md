@@ -51,6 +51,6 @@ python quick_start.py --source_dataset dataset/StarGAN_128 \
                       --pretrained_dir weights/pre-train/efficientnet/stargan.pth.tar \
                       --resume weights/t-gd/efficientnet/star_to_style2.pth.tar
 ```
-[ZHANG2016]
-## Reference
-.. [ZHANG2016] Zhang, K., Zhang, Z., Li, Z., and Qiao, Y. (2016). Joint face detection and alignment using multitask cascaded convolutional networks. IEEE Signal Processing Letters, 23(10):1499–1503.
+## Sources
+This app is inspired by Rando Kim book „Time of Your Life”
+and Android app tutorial by [@eericon](https://www.eericon.github.io/post/timer-android)
