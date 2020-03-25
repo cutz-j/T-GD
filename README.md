@@ -52,6 +52,5 @@ python quick_start.py --source_dataset dataset/StarGAN_128 \
                       --resume weights/t-gd/efficientnet/star_to_style2.pth.tar
 ```
 ## References
-```
 [Joint Face Detection and Alignment Using Multitask Cascaded Convolutional Networks](https://www.eericon.github.io/post/timer-android)
-```
+
