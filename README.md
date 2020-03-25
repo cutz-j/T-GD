@@ -51,3 +51,6 @@ python quick_start.py --source_dataset dataset/StarGAN_128 \
                       --pretrained_dir weights/pre-train/efficientnet/stargan.pth.tar \
                       --resume weights/t-gd/efficientnet/star_to_style2.pth.tar
 ```
+
+REFERENCE
+=========
