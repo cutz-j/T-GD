@@ -1,4 +1,5 @@
 # T-GD: Transferable GAN-generated Images Detection Framework.
+Hyeonseong Jeon, Youngoh Bang, Junyaup Kim, and Simon S. Woo. "T-GD: Transferable GAN-generated Images Detection Framework.". Thirty-seventh International Conference on Machine Learning  (ICML). 2020.
 
 ## Overview of our framework.
 <img src='./image/overview.png' width=1200>
