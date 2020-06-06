@@ -12,8 +12,8 @@ git clone https://github.com/anonymous-hub/T-GD
 ## Dataset
 The dataset for each result condition can be downloaded by running the file in dataset or [here](https://skku0-my.sharepoint.com/:f:/g/personal/byo7000_skku_edu/EoP8mWpbyDhNtIaZ9rBoPWcB5QRsinPBKwr0V18dHsUR8w?e=7oNCXY).
 
-CelebA, CelebA-HQ, FFHQ, LSUN-Bedroom, LSUN-Bird
-PGGAN_CelebA, StarGAN, StyleGAN1, StyleGAN2, PGGAN_Bedroom, PGGAN_Bird
+CelebA, CelebA-HQ, FFHQ, LSUN-Bedroom, LSUN-Bird.
+PGGAN_CelebA, StarGAN, StyleGAN1, StyleGAN2, PGGAN_Bedroom, PGGAN_Bird.
 
 A example script for downloading the testset is as follows:
 
