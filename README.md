@@ -6,7 +6,7 @@ Hyeonseong Jeon, Youngoh Bang, Junyaup Kim, and Simon S. Woo. "T-GD: Transferabl
 
 ## Clone
 ```
-git clone https://github.com/anonymous-hub/T-GD
+git clone https://github.com/cutz-j/T-GD
 ```
 
 ## Dataset
