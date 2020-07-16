@@ -25,6 +25,8 @@ bash download_PGGAN.sh
 bash download_StarGAN.sh
 bash download_StyleGAN.sh
 bash download_StyleGAN2.sh
+bash download_PGGAN_lsun_bedroom.sh
+bash download_PGGAN_lsun_bird.sh
 cd ..
 ```
 
