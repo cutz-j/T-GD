@@ -35,7 +35,8 @@ os.environ['CUDA_VISIBLE_DEVICES'] = str(gpu_id)
 use_cuda = torch.cuda.is_available()
 print("GPU device %d:" %(gpu_id), use_cuda)
 
-model = EfficientNet.from_name(opt.arch, num_classes=opt.classes)
+model = EfficientNet.from_name(opt.arch, num_classes=opt.classes,
+                              override_params={'dropout_rate': opt.dropout, 'drop_connect_rate': opt.dropconnect})
     
 model.to('cuda')
 cudnn.benchmark = True
