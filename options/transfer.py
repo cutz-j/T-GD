@@ -15,7 +15,7 @@ class BaseOptions():
 
         # data augmentation
         parser.add_argument('--classes', default=2)
-        parser.add_argument('--epochs', default=400)
+        parser.add_argument('--epochs', default=300)
         parser.add_argument('--iterations', default=500)
         parser.add_argument('--start_epoch', default=0)
         parser.add_argument('--train_batch', default=200)
