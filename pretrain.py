@@ -184,7 +184,7 @@ def test(opt, val_loader, model, criterion, epoch, use_cuda):
 
 for epoch in range(opt.start_epoch, opt.epochs):
     opt.lr = optimizer.state_dict()['param_groups'][0]['lr']
-    adjust_learning_rate(optimizer, epoch)
+    adjust_learning_rate(optimizer, epoch, opt)
     print('\nEpoch: [%d | %d] LR: %f' % (epoch + 1, opt.epochs, opt.lr))
     
     train_loss, train_acc, train_auroc = train(opt, train_loader, model, criterion, optimizer, epoch, use_cuda)
