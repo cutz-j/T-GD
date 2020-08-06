@@ -44,7 +44,7 @@ class BaseOptions():
         parser.add_argument('--gpu_id', default=0)
         
         parser.add_argument('--pretrained_dir', type=str, default='')
-        parser.add_argument('--resume_dir', type=str, default='')
+        parser.add_argument('--resume', type=str, default='')
         self.initialized = True
         return parser
 
