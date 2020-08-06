@@ -15,6 +15,6 @@ def adjust_learning_rate(optimizer, epoch, opt):
     lr_list.append(epoch)
     lr_list.sort()
     idx = lr_list.index(epoch)
-    opt['lr'] *= lr_set[idx]
+    opt.lr *= lr_set[idx]
     for param_group in optimizer.param_groups:
-        param_group['lr'] = opt['lr']
+        param_group['lr'] = opt.lr
