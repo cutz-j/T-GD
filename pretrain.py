@@ -17,7 +17,7 @@ from torchsummary import summary
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, roc_auc_score
 
-from model_pytorch import EfficientNet
+from models import EfficientNet
 from utils import Bar,Logger, AverageMeter, accuracy, mkdir_p, savefig
 from warmup_scheduler import GradualWarmupScheduler
 from utils.aug import data_augment, rand_bbox
@@ -28,7 +28,7 @@ ImageFile.LOAD_TRUNCATED_IMAGES = True
 from options.base import BaseOptions
 
 opt = BaseOptions().parse(print_options=False)
-print("{} from {} model testing on {}".format(opt.arch, opt.source_dataset, opt.target_dataset))
+#print("{} from {} model testing on {}".format(opt.arch, opt.source_dataset, opt.target_dataset))
 
 gpu_id = opt.gpu_id
 os.environ['CUDA_VISIBLE_DEVICES'] = str(gpu_id)
