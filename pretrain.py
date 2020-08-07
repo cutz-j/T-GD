@@ -120,10 +120,10 @@ def train(opt, train_loader, model, criterion, optimizer, epoch, use_cuda):
 
         # measure accuracy and record loss
         prec1 = accuracy(outputs.data, targets.data)
-        auroc = roc_auc_score(targets.cpu().detach().numpy(), outputs.cpu().detach().numpy()[:,1])
+#        auroc = roc_auc_score(targets.cpu().detach().numpy(), outputs.cpu().detach().numpy()[:,1])
         losses.update(loss.data.tolist(), inputs.size(0))
         top1.update(prec1[0], inputs.size(0))
-        arc.update(auroc, inputs.size(0))
+#        arc.update(auroc, inputs.size(0))
 
         # compute gradient and do SGD step
         optimizer.zero_grad()
@@ -135,10 +135,10 @@ def train(opt, train_loader, model, criterion, optimizer, epoch, use_cuda):
         end = time.time()
         
         if batch_idx % 100 == 0:
-            print('{batch}/{size} | Loss:{loss:.4f} | top1:{tp1:.4f} | AUROC:{ac:.4f}'.format(
-                     batch=batch_idx+1, size=len(train_loader), loss=losses.avg, tp1=top1.avg, ac=arc.avg))
-    print('{batch}/{size} | Loss:{loss:.4f} | top1:{tp1:.4f} | AUROC:{ac:.4f}'.format(
-                     batch=batch_idx+1, size=len(train_loader), loss=losses.avg, tp1=top1.avg, ac=arc.avg))
+            print('{batch}/{size} | Loss:{loss:.4f} | top1:{tp1:.4f}'.format(
+                     batch=batch_idx+1, size=len(train_loader), loss=losses.avg, tp1=top1.avg))
+    print('{batch}/{size} | Loss:{loss:.4f} | top1:{tp1:.4f}'.format(
+                     batch=batch_idx+1, size=len(train_loader), loss=losses.avg, tp1=top1.avg))
     return (losses.avg, top1.avg, arc.avg)
 
 def test(opt, val_loader, model, criterion, epoch, use_cuda):
