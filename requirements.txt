@@ -5,3 +5,5 @@ opencv_python
 Pillow
 torch>=1.3.0
 torchvision
+progress
+git+https://github.com/ildoonet/pytorch-gradual-warmup-lr.git

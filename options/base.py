@@ -4,9 +4,11 @@ import os
 class BaseOptions():
     def __init__(self):
         self.initialized = False
+        self.isTrain = True
 
     def initialize(self, parser):
         parser.add_argument('--mode', default='binary')
+        parser.add_argument('--source_dataset', type=str, help='dataset dir')
         parser.add_argument('--arch', type=str, default='efficientnet-b0', help='architecture for binary classification')
         parser.add_argument('--checkpoint', default='./log/')
 
@@ -25,6 +27,9 @@ class BaseOptions():
         parser.add_argument('--num_workers', default=8)
         parser.add_argument('--manual_seed', default=7)
         parser.add_argument('--size', default=128)
+        
+        parser.add_argument('--dropout', default=0.2, help='Dropout probability')
+        parser.add_argument('--dropconnect', default=0.2, help='Dropconnect probability')
 
         parser.add_argument('--cm_prob', default=0.5, help='Cutmix probability')
         parser.add_argument('--cm_beta', default=1.0)
@@ -36,7 +41,7 @@ class BaseOptions():
         parser.add_argument('--gpu_id', default=0)
         
         parser.add_argument('--pretrained_dir', type=str, default='')
-        parser.add_argument('--resume_dir', type=str, default='')
+        parser.add_argument('--resume', type=str, default='')
         self.initialized = True
         return parser
 

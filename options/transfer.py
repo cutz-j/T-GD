@@ -4,6 +4,7 @@ import os
 class BaseOptions():
     def __init__(self):
         self.initialized = False
+        self.isTrain = True
 
     def initialize(self, parser):
         parser.add_arugment('--target', required=True, help='pggan, star, style1, style2, bed, bedroom')
@@ -30,8 +31,8 @@ class BaseOptions():
         parser.add_argument('--manual_seed', default=7)
         parser.add_argument('--size', default=128)
         
-        parser.add_argumnet('--dropout', default=0.2, help='Dropout probability')
-        parser.add_argumnet('--dropconnect', default=0, help='Dropconnect probability')
+        parser.add_argument('--dropout', default=0.2, help='Dropout probability')
+        parser.add_argument('--dropconnect', default=0.2, help='Dropconnect probability')
 
         parser.add_argument('--cm_prob', default=0.5, help='Cutmix probability')
         parser.add_argument('--cm_beta', default=1.0)
@@ -43,7 +44,7 @@ class BaseOptions():
         parser.add_argument('--gpu_id', default=0)
         
         parser.add_argument('--pretrained_dir', type=str, default='')
-        parser.add_argument('--resume_dir', type=str, default='')
+        parser.add_argument('--resume', type=str, default='')
         self.initialized = True
         return parser
 
