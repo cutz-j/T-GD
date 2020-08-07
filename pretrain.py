@@ -40,6 +40,7 @@ model = EfficientNet.from_name(opt.arch, num_classes=opt.classes,
     
 model.to('cuda')
 cudnn.benchmark = True
+best_acc = 0
 
 data_dir = opt.source_dataset
 train_dir = os.path.join(data_dir, 'train')

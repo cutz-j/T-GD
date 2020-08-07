@@ -34,6 +34,7 @@ gpu_id = opt.gpu_id
 os.environ['CUDA_VISIBLE_DEVICES'] = str(gpu_id)
 use_cuda = torch.cuda.is_available()
 print("GPU device %d:" %(gpu_id), use_cuda)
+best_acc = 0
 
 if not os.path.isdir(opt.checkpoint):
     os.makedirs(opt.checkpoint)
