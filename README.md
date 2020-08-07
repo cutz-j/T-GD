@@ -48,7 +48,9 @@ cd ..
 pip install -r requirements.txt
 ```
 * warmup scheduler
+```
 pip install git+https://github.com/ildoonet/pytorch-gradual-warmup-lr.git
+```
 
 ## Evaluation
 ```
