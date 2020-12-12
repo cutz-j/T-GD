@@ -10,7 +10,7 @@ import torch.backends.cudnn as cudnn
 from torch.utils.data import DataLoader
 import torch.optim as optim
 from PIL import Image
-from efficientnet import EfficientNet
+from models import EfficientNet
 from resnext import resnext50_32x4d
 from options.test import TestOptions
 from utils import Bar,Logger, AverageMeter, accuracy, mkdir_p, savefig
