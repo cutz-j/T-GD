@@ -33,6 +33,8 @@ cd ..
 For the PGGAN dataset, we have contacted with the dataset provider about opening the dataset. For now we only uploaded data for the test set.
 PGGAN-images from LSUN-bedroom and LSUN-bird will be added to dataset.
 
+Our datasets are heavily from [here](https://github.com/tkarras/progressive_growing_of_gans).
+
 ## Download pre-trained model weights
 The pretrained weights can be downloaded by running the file in dataset or [here](https://skku0-my.sharepoint.com/:f:/g/personal/byo7000_skku_edu/EoP8mWpbyDhNtIaZ9rBoPWcB5QRsinPBKwr0V18dHsUR8w?e=7oNCXY).
 
